@@ -1,0 +1,51 @@
+.navbar.scrolled {
+  background-color: transparent;
+  padding: 10px 20px;
+}
+
+/* Navbar container */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Navbar links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+/* Navbar link styles */
+.navbar-links li a {
+  /* color: white; */
+  color: #c9d1d9;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Active link style */
+.navbar-links li a.active {
+  color: #ff5722;
+}
+
+/* Hover effect */
+.navbar-links li a:hover {
+  color: #ff5722;
+}
+
+.navbar.active {
+  background-color: #0d1117;
+}
+
+/* Responsiveness: Stack navbar items vertically on small screens */
+@media (max-width: 768px) {
+  .navbar-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
