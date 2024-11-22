@@ -7,8 +7,8 @@
 .animate-container .about {
   display: flex;
   justify-content: center;
-  height: 100px;
-  text-align: center;
+  height: 30vh;
+  align-items: center;
 }
 
 .content {
@@ -25,6 +25,10 @@
   border-radius: 10px;
   width: 100%;
   max-width: 70%;
+}
+
+#typed-text {
+  font-size: 54px;
 }
 
 .animate-container .content.left {

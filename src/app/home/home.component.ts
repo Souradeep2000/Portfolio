@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Typed from 'typed.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +26,34 @@ export class HomeComponent implements AfterViewInit {
     { text: 'And the final item slides in from the right!' },
   ];
 
-  ngAfterViewInit() {
+  private typed: any;
+  private hasScrolled = false;
+
+  ngAfterViewInit(): void {
+    this.animateSplitText();
+    this.animateLeftRight();
+  }
+
+  animateSplitText(): void {
+    const options = {
+      strings: ['My name is Souradeep Gharami'],
+      typeSpeed: 80, // Speed at which the text is typed
+      backSpeed: 100, // Speed at which the text is erased
+      backDelay: 3500, // Delay before the text starts deleting
+      startDelay: 500, // Delay before starting to type
+      loop: true, // Loop the typing effect
+      showCursor: true, // Show blinking cursor
+      shuffle: true,
+      cursorChar: ' |', // Custom cursor character
+    };
+
+    // Create an instance of Typed.js
+    this.typed = new Typed('#typed-text', options);
+
+    // window.addEventListener('scroll', this.onScroll);
+  }
+
+  animateLeftRight(): void {
     gsap.utils.toArray('.content').forEach((element: any, index: number) => {
       gsap.fromTo(
         element,
@@ -46,4 +74,15 @@ export class HomeComponent implements AfterViewInit {
       );
     });
   }
+
+  private onScroll = () => {
+    const scrollPosition = window.scrollY;
+    const triggerPoint = 200;
+
+    if (scrollPosition > triggerPoint && !this.hasScrolled) {
+      this.hasScrolled = true; // Ensure this happens only once
+      this.typed.options.backSpeed = 20; // Set backSpeed for deletion
+      this.typed.reset(); // Trigger backspacing effect
+    }
+  };
 }
