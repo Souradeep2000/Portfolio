@@ -1,3 +1,10 @@
 <div class="main-container">
-  <h1>here at home</h1>
+  <div class="animate-container">
+    <p
+      *ngFor="let paragraph of paragraphs; let i = index"
+      [class]="i % 2 === 0 ? 'left' : 'right'"
+    >
+      {{ paragraph }}
+    </p>
+  </div>
 </div>
