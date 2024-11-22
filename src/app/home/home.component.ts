@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, HostListener } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Typed from 'typed.js';
@@ -25,11 +25,44 @@ export class HomeComponent implements AfterViewInit {
     },
     { text: 'And the final item slides in from the right!' },
   ];
+  private cat: HTMLElement | null = null;
+  private isScrolling: boolean = false;
+
+  // Initial position when the page loads
+  private initialTop = -100; // Top position of the cat when it's hidden
+  private initialLeft = 50;
+
+  @HostListener('window:scroll', [])
+  onScroll() {
+    const scrollPosition = window.scrollY;
+    const viewportWidth = window.innerWidth; // Get the viewport width
+
+    if (this.cat) {
+      // Apply falling effect (moving down)
+      const fallDistance = scrollPosition + 300; // Adjust this value for how far the cat falls
+
+      // Apply zigzag movement based on scroll position within the visible area
+      const zigzag = (scrollPosition % 200) - 100; // Creates a zigzag motion
+      const boundedZigzag = Math.max(Math.min(zigzag, 40), -40); // Restrict horizontal movement to within 40% of the viewport width
+
+      // Use GSAP to animate cat's movement
+      gsap.to(this.cat, {
+        top: fallDistance + 'px', // Move down as the page scrolls
+        left: this.initialLeft + boundedZigzag + '%', // Constrained zigzag horizontal movement
+        ease: 'none', // Linear movement
+      });
+    }
+  }
 
   private typed: any;
   private hasScrolled = false;
 
   ngAfterViewInit(): void {
+    this.cat = document.querySelector('.falling-cat');
+    if (this.cat) {
+      this.cat.style.top = `${this.initialTop}px`;
+      this.cat.style.left = `${this.initialLeft}%`;
+    }
     this.animateSplitText();
     this.animateLeftRight();
   }
@@ -75,14 +108,27 @@ export class HomeComponent implements AfterViewInit {
     });
   }
 
-  private onScroll = () => {
-    const scrollPosition = window.scrollY;
-    const triggerPoint = 200;
-
-    if (scrollPosition > triggerPoint && !this.hasScrolled) {
-      this.hasScrolled = true; // Ensure this happens only once
-      this.typed.options.backSpeed = 20; // Set backSpeed for deletion
-      this.typed.reset(); // Trigger backspacing effect
+  startFallingAnimation(scrollPosition: number): void {
+    if (this.cat) {
+      // GSAP animation for zigzag and fall effect
+      gsap.to(this.cat, {
+        duration: 5, // Adjust duration based on scroll speed
+        top: () => `${scrollPosition + 200}px`, // Fall effect
+        left: () => `${Math.random() * 50 + 10}%`, // Zigzag movement (random horizontal movement)
+        ease: 'none', // Keeps it linear (no easing)
+        onUpdate: () => {
+          // Update position as the user scrolls
+          const updatedScrollPosition = window.scrollY;
+          gsap.to(this.cat, {
+            top: `${updatedScrollPosition + 200}px`, // Update the Y position as user scrolls
+            left: `${Math.random() * 50 + 10}%`, // Update the X position for zigzag effect
+          });
+        },
+        onComplete: () => {
+          // Once animation is complete, stop the cat from moving further
+          gsap.set(this.cat, { top: `${scrollPosition + 200}px`, left: '50%' });
+        },
+      });
     }
-  };
+  }
 }
