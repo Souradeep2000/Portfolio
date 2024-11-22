@@ -36,10 +36,6 @@
   background-color: #0d1117;
 }
 
-.navbar.scrolled {
-  background-color: transparent;
-}
-
 @media (max-width: 768px) {
   .navbar-links {
     flex-direction: column;

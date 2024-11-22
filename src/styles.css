@@ -8,8 +8,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 body {
@@ -38,13 +36,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* body,
-  .navbar,
-  .container {
-    max-width: 100%;
-    overflow: hidden;
-  } */
-
 .spacer {
   height: 2000px;
 }
@@ -68,6 +59,8 @@ html {
 
 .main-container {
   padding: 30px 40px 40px 40px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 768px) {
