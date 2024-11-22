@@ -1,10 +1,12 @@
-<div class="main-container">
-  <div class="animate-container">
-    <p
-      *ngFor="let paragraph of paragraphs; let i = index"
-      [class]="i % 2 === 0 ? 'left' : 'right'"
-    >
-      {{ paragraph }}
-    </p>
+<!-- <div class="main-container"> -->
+<div class="animate-container">
+  <div
+    class="content"
+    *ngFor="let item of items; let i = index"
+    [class]="i % 2 === 0 ? 'left' : 'right'"
+  >
+    <div class="image"></div>
+    <p>{{ item.text }}</p>
   </div>
 </div>
+<!-- </div> -->

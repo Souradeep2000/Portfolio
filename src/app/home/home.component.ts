@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, AfterViewInit } from '@angular/core';
 import gsap from 'gsap';
-import _ScrollTrigger from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(_ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-home',
@@ -13,34 +12,31 @@ gsap.registerPlugin(_ScrollTrigger);
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements AfterViewInit {
-  constructor(private router: Router) {}
-
-  // isActive(route: string): boolean {
-  //   return this.router.url === route;
-  // }
-
-  paragraphs: string[] = [
-    'This is the first paragraph coming from the left.',
-    'This is the second paragraph coming from the right.',
-    'Here’s another paragraph from the left.',
-    'And yet another from the right!',
+  items: { text: string }[] = [
+    {
+      text: 'This is the first item with an image and paragraph. ahdua jabude ajhdua kajidjie ajhxuah',
+    },
+    { text: 'The second item comes from the right.' },
+    { text: 'Here’s another item from the left.' },
+    { text: 'And the final item slides in from the right!' },
   ];
 
-  ngAfterViewInit(): void {
-    gsap.utils.toArray('p').forEach((element: any, index: number) => {
+  ngAfterViewInit() {
+    // Animate each content block
+    gsap.utils.toArray('.content').forEach((element: any, index: number) => {
       gsap.fromTo(
         element,
-        { opacity: 0, x: index % 2 === 0 ? -100 : 100 }, // Left or right based on index
+        { opacity: 0, x: index % 2 === 0 ? -100 : 100 }, // Alternates direction
         {
           opacity: 1,
           x: 0,
           duration: 1,
           scrollTrigger: {
-            trigger: element,
-            start: 'top 70%', // Animation starts when the paragraph is 80% into the viewport
-            end: 'top 25%',
-            scrub: true,
-            toggleActions: 'play none none reverse', // Animates when scrolling forward, reverses when scrolling back
+            trigger: element, // Each content div is its own trigger
+            start: 'top 70%', // Animation starts when the div enters the viewport
+            end: 'top 20%', // Animation reverses when the div exits this range
+            scrub: true, // Smooth animation tied to scroll
+            toggleActions: 'play reverse play reverse', // Plays forward on scroll down, reverses on scroll up
           },
         }
       );
