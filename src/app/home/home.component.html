@@ -1,12 +1,13 @@
-<!-- <div class="main-container"> -->
 <div class="animate-container">
+  <!-- <div class="about"><h2>my name is souro</h2></div> -->
   <div
     class="content"
     *ngFor="let item of items; let i = index"
-    [class]="i % 2 === 0 ? 'left' : 'right'"
+    [class]="i % 2 === 0 ? 'right' : 'left'"
   >
     <div class="image"></div>
-    <p>{{ item.text }}</p>
+    <div class="text-container">
+      <p>{{ item.text }}</p>
+    </div>
   </div>
 </div>
-<!-- </div> -->
