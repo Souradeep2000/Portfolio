@@ -4,8 +4,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Typed from 'typed.js';
 
-gsap.registerPlugin(ScrollTrigger);
-
 @Component({
   selector: 'app-home',
   imports: [CommonModule],
@@ -25,44 +23,12 @@ export class HomeComponent implements AfterViewInit {
     },
     { text: 'And the final item slides in from the right!' },
   ];
-  private cat: HTMLElement | null = null;
-  private isScrolling: boolean = false;
-
-  // Initial position when the page loads
-  private initialTop = -100; // Top position of the cat when it's hidden
-  private initialLeft = 50;
-
-  @HostListener('window:scroll', [])
-  onScroll() {
-    const scrollPosition = window.scrollY;
-    const viewportWidth = window.innerWidth; // Get the viewport width
-
-    if (this.cat) {
-      // Apply falling effect (moving down)
-      const fallDistance = scrollPosition + 300; // Adjust this value for how far the cat falls
-
-      // Apply zigzag movement based on scroll position within the visible area
-      const zigzag = (scrollPosition % 200) - 100; // Creates a zigzag motion
-      const boundedZigzag = Math.max(Math.min(zigzag, 40), -40); // Restrict horizontal movement to within 40% of the viewport width
-
-      // Use GSAP to animate cat's movement
-      gsap.to(this.cat, {
-        top: fallDistance + 'px', // Move down as the page scrolls
-        left: this.initialLeft + boundedZigzag + '%', // Constrained zigzag horizontal movement
-        ease: 'none', // Linear movement
-      });
-    }
-  }
 
   private typed: any;
-  private hasScrolled = false;
 
   ngAfterViewInit(): void {
-    this.cat = document.querySelector('.falling-cat');
-    if (this.cat) {
-      this.cat.style.top = `${this.initialTop}px`;
-      this.cat.style.left = `${this.initialLeft}%`;
-    }
+    gsap.registerPlugin(ScrollTrigger);
+    this.initCatAnimation();
     this.animateSplitText();
     this.animateLeftRight();
   }
@@ -80,10 +46,7 @@ export class HomeComponent implements AfterViewInit {
       cursorChar: ' |', // Custom cursor character
     };
 
-    // Create an instance of Typed.js
     this.typed = new Typed('#typed-text', options);
-
-    // window.addEventListener('scroll', this.onScroll);
   }
 
   animateLeftRight(): void {
@@ -108,27 +71,62 @@ export class HomeComponent implements AfterViewInit {
     });
   }
 
-  startFallingAnimation(scrollPosition: number): void {
-    if (this.cat) {
-      // GSAP animation for zigzag and fall effect
-      gsap.to(this.cat, {
-        duration: 5, // Adjust duration based on scroll speed
-        top: () => `${scrollPosition + 200}px`, // Fall effect
-        left: () => `${Math.random() * 50 + 10}%`, // Zigzag movement (random horizontal movement)
-        ease: 'none', // Keeps it linear (no easing)
-        onUpdate: () => {
-          // Update position as the user scrolls
-          const updatedScrollPosition = window.scrollY;
-          gsap.to(this.cat, {
-            top: `${updatedScrollPosition + 200}px`, // Update the Y position as user scrolls
-            left: `${Math.random() * 50 + 10}%`, // Update the X position for zigzag effect
-          });
+  initCatAnimation(): void {
+    gsap.to('.falling-cat', {
+      y: window.innerHeight / 2,
+      x: 300,
+      ease: 'power2.out',
+      // rotate: -45,
+      scrollTrigger: {
+        trigger: '.main-container',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1.5,
+        onUpdate: (self) => {
+          // Update the rotation dynamically based on scroll progress
+          const progress = self.progress;
+
+          // Calculate the rotation angle based on scroll progress (0 to 45 degrees)
+          const rotationValue = progress * -45; // Rotate from 0 to 45 degrees
+
+          // Apply the rotation
+          gsap.set('.falling-cat', { rotate: rotationValue });
+
+          // Reset rotation to 0 when scroll ends
+          if (self.progress === 1) {
+            gsap.set('.falling-cat', { rotate: 0 });
+          }
         },
-        onComplete: () => {
-          // Once animation is complete, stop the cat from moving further
-          gsap.set(this.cat, { top: `${scrollPosition + 200}px`, left: '50%' });
+      },
+      modifiers: {
+        x: (x) => {
+          const numericX = parseFloat(x);
+
+          const amplitude = 150; // Higher amplitude for more visible zigzag
+          const frequency = 50; // Lower frequency for smoother zigzag
+          const zigzagValue =
+            amplitude * Math.sin(numericX / frequency) +
+            amplitude * Math.sin(numericX / (frequency / 2));
+
+          return `${zigzagValue}px`;
         },
-      });
-    }
+      },
+    });
+
+    // gsap.to('.falling-cat', {
+    //   rotation: 15, // Start at -45 degrees
+    //   scrollTrigger: {
+    //     trigger: '.main-container',
+    //     start: 'top top',
+    //     end: 'bottom bottom',
+    //     scrub: 1.5,
+    //     onUpdate: (self) => {
+    //       // Linear interpolation between -45deg and 0deg based on scroll progress
+    //       const scrollProgress = self.progress;
+    //       const rotationValue = -45 + scrollProgress * 45; // Interpolate from -45 to 0
+    //       gsap.set('.falling-cat', { rotation: rotationValue });
+    //     },
+    //   },
+    // });
   }
 }
