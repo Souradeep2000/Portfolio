@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, HostListener } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  HostListener,
+  OnDestroy,
+} from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Typed from 'typed.js';
@@ -10,7 +15,7 @@ import Typed from 'typed.js';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements AfterViewInit, OnDestroy {
   items: { text: string }[] = [
     {
       text: 'This is the first item with an image and paragraph. ahdua jabude ajhdua kajidjie ajhxuah',
@@ -31,6 +36,19 @@ export class HomeComponent implements AfterViewInit {
     this.initCatAnimation();
     this.animateSplitText();
     this.animateLeftRight();
+  }
+
+  ngOnDestroy(): void {
+    // Destroy Typed.js instance
+    if (this.typed) {
+      this.typed.destroy();
+    }
+
+    // Kill all ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    // Kill all GSAP animations
+    gsap.globalTimeline.clear();
   }
 
   animateSplitText(): void {
@@ -71,7 +89,7 @@ export class HomeComponent implements AfterViewInit {
     });
   }
 
-  initCatAnimation(): void {
+  private initCatAnimation(): void {
     gsap.to('.falling-cat', {
       y: window.innerHeight / 2,
       x: 300,
@@ -112,21 +130,5 @@ export class HomeComponent implements AfterViewInit {
         },
       },
     });
-
-    // gsap.to('.falling-cat', {
-    //   rotation: 15, // Start at -45 degrees
-    //   scrollTrigger: {
-    //     trigger: '.main-container',
-    //     start: 'top top',
-    //     end: 'bottom bottom',
-    //     scrub: 1.5,
-    //     onUpdate: (self) => {
-    //       // Linear interpolation between -45deg and 0deg based on scroll progress
-    //       const scrollProgress = self.progress;
-    //       const rotationValue = -45 + scrollProgress * 45; // Interpolate from -45 to 0
-    //       gsap.set('.falling-cat', { rotation: rotationValue });
-    //     },
-    //   },
-    // });
   }
 }
