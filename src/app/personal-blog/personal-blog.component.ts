@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-personal-blog',
   imports: [],
   templateUrl: './personal-blog.component.html',
-  styleUrl: './personal-blog.component.css'
+  styleUrl: './personal-blog.component.css',
 })
-export class PersonalBlogComponent {
-
-}
+export class PersonalBlogComponent {}
