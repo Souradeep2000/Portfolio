@@ -8,14 +8,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 
-body {
+/* .portfolio-body {
   margin: 0;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
-}
+  background-image: linear-gradient(to top, #161b22 0%, #accbee 100%);
+} */
 .portfolio-footer {
   display: flex;
   flex-direction: column;

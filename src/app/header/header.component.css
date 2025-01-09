@@ -1,6 +1,10 @@
 .navbar.scrolled {
-  background-color: transparent;
-  padding: 10px 20px;
+  background-color: #0d1117;
+  padding: 20px 20px;
+}
+
+.navbar {
+  padding: 30px 20px;
 }
 
 .nav-container {
@@ -33,7 +37,7 @@
 }
 
 .navbar.active {
-  background-color: #0d1117;
+  background-color: transparent;
 }
 
 @media (max-width: 768px) {
@@ -43,5 +47,11 @@
   }
   .navbar-links li a {
     font-size: 14px;
+  }
+  .navbar.scrolled {
+    padding: 15px;
+  }
+  .navbar {
+    padding: 20px 10px;
   }
 }
