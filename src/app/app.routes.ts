@@ -14,7 +14,7 @@ export const routes: Routes = [
     component: PersonalBlogComponent,
   },
   { path: 'souro/resume', component: ResumeComponent },
-  { path: 'souro/portfolio', component: PortfolioComponent },
+  { path: 'souro/projects', component: PortfolioComponent },
   {
     path: '',
     redirectTo: '/souro',
