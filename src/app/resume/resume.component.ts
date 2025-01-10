@@ -10,4 +10,5 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 })
 export class ResumeComponent {
   constructor() {}
+  
 }

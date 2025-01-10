@@ -1,15 +1,231 @@
-.falling-cat {
-  position: absolute;
-  /* top: 0; */
-  /* left: 50%; */
-  width: 150px; /* Adjust the size of the cat image */
-  height: 150px; /* Adjust the size of the cat image */
-  background-position: center;
-  z-index: -1;
-  background-image: url("/assets/images/cat.png");
-  background-size: cover;
+/* 
+.timeline-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #222; 
+  color: #f1f1f1;
+  max-width: 75%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 }
 
-.main-container {
-  height: 100vh;
+.timeline-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
+  padding-left: 30px; 
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0; 
+}
+
+.timeline-item:last-child::after {
+  content: "";
+  position: absolute;
+  left: -3px; 
+  top: 100%; 
+  width: 3px; 
+  height: 10px; 
+  background-color: rgba(255, 255, 255, 0.8); 
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -38px; 
+  top: 0;
+  width: 15px;
+  height: 15px;
+  background-color: #f4c542; 
+  border: 2px solid rgba(255, 255, 255, 0.8); 
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(244, 197, 66, 0.8); 
+}
+
+.timeline-item-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.timeline-year {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f4c542;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.timeline-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #eaeaea;
+}
+
+@media screen and (max-width: 600px) {
+  .timeline-container {
+    padding: 10px; 
+    max-width: 95%;
+  }
+
+  .timeline-list {
+    padding-left: 20px; 
+    border-left: 1px solid rgba(255, 255, 255, 0.8); 
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    left: -25px; 
+    box-shadow: 0 0 8px rgba(244, 197, 66, 0.8); 
+  }
+
+  .timeline-item-title {
+    font-size: 16px;
+  }
+
+  .timeline-text {
+    font-size: 13px;
+  }
+} */
+
+.resume {
+  --jet: hsl(0, 0%, 22%);
+  --fs6: 14px;
+  --fs8: 17px;
+  --vegas-gold: hsl(45, 54%, 58%);
+  --fw400: 400;
+  --fw500: 500;
+  --text-gradient-yellow: linear-gradient(
+    to right,
+    hsl(45, 100%, 72%),
+    hsl(35, 100%, 68%)
+  );
+  max-width: 75%;
+  margin: 0 auto; /* Centers the container */
+  li {
+    list-style: none;
+  }
+}
+
+.article-title {
+  margin-bottom: 30px;
+}
+
+.article-title {
+  position: relative;
+  padding-bottom: 7px;
+}
+
+.article-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: var(--text-gradient-yellow);
+  border-radius: 3px;
+}
+
+.timeline {
+  margin-bottom: 30px;
+}
+
+.timeline .title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.timeline-list {
+  font-size: var(--fs8);
+  margin-left: 45px;
+}
+
+.timeline-list span {
+  color: var(--vegas-gold);
+  font-weight: var(--fw500);
+  line-height: 1.6;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item:not(:last-child) {
+  margin-bottom: 20px;
+}
+.timeline-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -30px;
+  width: 1px;
+  height: calc(100% + 50px);
+  background: var(--jet);
+  --text-gradient-yellow: linear-gradient(
+    to right,
+    hsl(45, 100%, 72%),
+    hsl(35, 100%, 68%)
+  );
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -33px;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: var(--text-gradient-yellow);
+  box-shadow: 0 0 0 4px var(--jet);
+  --light-gray: hsl(0, 0%, 84%);
+  --fw300: 300;
+}
+
+.timeline-item-title {
+  font-size: var(--fs8);
+  line-height: 1.3;
+  margin-bottom: 7px;
+}
+
+.timeline-text {
+  color: var(--light-gray);
+  font-weight: var(--fw300);
+  line-height: 1.6;
+  text-align: justify;
+}
+
+@media screen and (max-width: 600px) {
+  .resume {
+    max-width: 95%;
+    margin-top: 5%;
+  }
+  .timeline-list {
+    font-size: var(--fs6);
+  }
+
+  .timeline-list span {
+    font-weight: var(--fw400);
+  }
 }
