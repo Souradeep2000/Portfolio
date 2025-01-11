@@ -113,6 +113,7 @@
   --vegas-gold: hsl(45, 54%, 58%);
   --fw400: 400;
   --fw500: 500;
+  --eerie-black2: hsl(240, 2%, 12%);
   --text-gradient-yellow: linear-gradient(
     to right,
     hsl(45, 100%, 72%),
@@ -125,8 +126,17 @@
   }
 }
 
+.projects-div {
+  background: var(--eerie-black2);
+  border: 1px solid var(--jet);
+  border-radius: 20px;
+  box-shadow: var(--shadow1);
+  padding: 20px;
+  margin-bottom: 3%;
+}
+
 .article-title {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .article-title {
@@ -151,9 +161,14 @@
 
 .timeline .title-wrapper {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  /* gap: 15px; */
+  flex-direction: column;
   margin-bottom: 25px;
+}
+
+.timeline .title-wrapper .experience-title {
+  display: flex;
+  justify-content: space-between;
 }
 
 .timeline-list {
@@ -216,16 +231,51 @@
   text-align: justify;
 }
 
-@media screen and (max-width: 600px) {
+.education-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.education-box .education-title {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.education-title h4 {
+  text-align: right; /* Align the date or CGPA to the right */
+}
+
+.skills-section {
+  height: 25vh;
+}
+
+@media screen and (max-width: 768px) {
   .resume {
     max-width: 95%;
     margin-top: 5%;
   }
+
+  .education-box .education-title {
+    flex-direction: column; /* Stack the items vertically on smaller screens */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .education-title h4 {
+    text-align: left; /* Align to the left for mobile */
+    width: auto; /* Reset the width */
+  }
+
   .timeline-list {
     font-size: var(--fs6);
   }
 
   .timeline-list span {
     font-weight: var(--fw400);
+  }
+
+  .timeline-item-title {
+    font-size: var(--fs6);
   }
 }

@@ -47,111 +47,241 @@
 </div> -->
 
 <div class="resume" data-page="resume">
-  <!-- <header>
-    <h2 class="h2 article-title">Resume</h2>
-  </header> -->
+  <header>
+    <h2 class="h2 article-title">Experience</h2>
+  </header>
   <section class="timeline">
     <div class="title-wrapper">
-      <h2>Education</h2>
+      <div class="experience-title">
+        <h3>Sinope Technologies</h3>
+        <h4>April 2022 - Jan 2025</h4>
+      </div>
+
+      <div class="experience-title">
+        <h2>Full Stack Engineer (Remote)</h2>
+        <h4>Quebec, Canada</h4>
+      </div>
     </div>
 
     <ul class="timeline-list">
       <li class="timeline-item">
-        <h4 class="h4 timeline-item-title">
-          University of Engineering & Management, Kolkata
-        </h4>
-        <span>2022</span>
         <p class="timeline-text">
-          There I learnt a wide range of topics that are essential to
-          understanding both the theory and practical aspects of computing. This
-          involves programming fundamentals, computer architecture, operating
-          systems, databases, software engineering, problem solving,
-          collaboration and communication soft skills.
+          Boosted customer satisfaction by 16% through the introduction of an
+          innovative component that streamlined the process of moving multiple
+          devices between locations, with on-the-fly selection and deselection
+          capabilities.
         </p>
       </li>
 
       <li class="timeline-item">
-        <h4 class="h4 timeline-item-title">12th</h4>
-        <span>2017</span>
         <p class="timeline-text">
-          In 12th grade (Science stream with Biology) under the ISC curriculum,
-          I deepened my understanding of subjects like Physics, Mathematics,
-          Chemistry, and English. I enhanced my analytical, problem-solving, and
-          quantitative skills preparing me for higher education and a career in
-          business or related fields.
+          Achieved 98% precision in energy-saving and cost readings through the
+          implementation of a device-automation calendar component and energy
+          consumption graphs.
         </p>
       </li>
 
       <li class="timeline-item">
-        <h4 class="h4 timeline-item-title">10th</h4>
-        <span>2015</span>
         <p class="timeline-text">
-          In 10th grade under the ICSE curriculum, I developed a strong
-          foundation in subjects like Mathematics, Science, English, and Social
-          Science, enhancing my analytical, problem-solving, and communication
-          skills. I also learned valuable time-management and critical thinking
-          abilities, preparing me for future academic and personal growth.
+          Architected a monolithic application to generate virtual devices that
+          emulate authentic Sinope devices via server communication using
+          WebSocket connections.
+        </p>
+      </li>
+
+      <li class="timeline-item">
+        <p class="timeline-text">
+          Crafted a Node.js micro-service for stress testing, generating
+          hundreds of thousands of accounts and virtual devices with MongoDB and
+          MySQL for database operations,specifically designed to pin-point
+          server breakpoints.
+        </p>
+      </li>
+
+      <li class="timeline-item">
+        <p class="timeline-text">
+          Enhanced AdminUI by integrating key functionalities such as user email
+          password change dialog and device duplicate identifier detection
+          component, concurrently engineering RESTful APIs, leading to a 25%
+          reduction in administrative errors.
+        </p>
+      </li>
+      <li class="timeline-item">
+        <p class="timeline-text">
+          Assumed ownership of optimizing device automation data loadtime for
+          the client by implementing paginationlogic, effectively addressing
+          prolonged data display delays.
+        </p>
+      </li>
+      <li class="timeline-item">
+        <p class="timeline-text">
+          Resolved critical bugs across multiple Sinope platforms and
+          responsible for thorough documentation of all projects undertaken.
         </p>
       </li>
     </ul>
   </section>
-  <!-- <section class="skill">
-      <h3 class="h3 skills-title">My Skills</h3>
 
-      <ul class="skills-list content-card">
-          <li class="skills-item">
-              <div class="title-wrapper">
-                  <h5 class="h5">Web Design (HTML-CSS-JS)</h5>
-                  <data value="80">80%</data>
-              </div>
+  <!-- <iframe
+    src="https://leetcode.com/u/Souro/"
+    width="100%"
+    height="600px"
+  ></iframe> -->
 
-              <div class="skills-progress-bg">
-                  <div class="skills-progress-fill" style="width: 80%;"></div>
-              </div>
-          </li>
+  <header>
+    <h2 class="h2 article-title">Skills</h2>
+  </header>
+  <div class="skills-section">
+    <div class="carousel-container">
+      <!-- Forward Carousel -->
+      <app-carousel
+        [icons]="icons"
+        [width]="'110px'"
+        [height]="'50px'"
+        [quantity]="icons.length"
+        [duration]="'15s'"
+      ></app-carousel>
 
-          <li class="skills-item">
-              <div class="title-wrapper">
-                  <h5 class="h5">PHP (core,SQL)</h5>
-                  <data value="70">70%</data>
-              </div>
+      <br />
 
-              <div class="skills-progress-bg">
-                  <div class="skills-progress-fill" style="width: 70%;"></div>
-              </div>
-          </li>
+      <!-- Reverse Carousel -->
+      <app-carousel
+        [icons]="reverseIcons"
+        [width]="'110px'"
+        [height]="'50px'"
+        [quantity]="icons.length"
+        [duration]="'15s'"
+        [reverse]="true"
+      ></app-carousel>
+    </div>
+  </div>
 
-          <li class="skills-item">
-              <div class="title-wrapper">
-                  <h5 class="h5">Tailwind CSS</h5>
-                  <data value="90">90%</data>
-              </div>
+  <header>
+    <h2 class="h2 article-title">Projects</h2>
+  </header>
+  <div class="projects-div">
+    <section class="timeline">
+      <div class="title-wrapper">
+        <h3>Art Aficionado - netlify.app | GitHub</h3>
+        <h4>
+          An E-Commerce website to provide handicrafts and hand made gifts for
+          special occasions
+        </h4>
+      </div>
 
-              <div class="skills-progress-bg">
-                  <div class="skills-progress-fill" style="width: 90%;"></div>
-              </div>
-          </li>
+      <ul class="timeline-list">
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Developed comprehensive features including product search/filter,
+            comment pagination, cart management, real-time comments, user
+            profile update and admin/seller portal.
+          </p>
+        </li>
 
-          <li class="skills-item">
-              <div class="title-wrapper">
-                  <h5 class="h5">React.js</h5>
-                  <data value="50">50%</data>
-              </div>
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Executed user authentication (JWT with Bcrypt) and password reset
+            via Nodemailer.
+          </p>
+        </li>
 
-              <div class="skills-progress-bg">
-                  <div class="skills-progress-fill" style="width: 50%;"></div>
-              </div>
-          </li>
-          <li class="skills-item">
-              <div class="title-wrapper">
-                  <h5 class="h5">jQuary</h5>
-                  <data value="50">50%</data>
-              </div>
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Integrated payment methods using Razorpay APIs and PayPal scripts.
+          </p>
+        </li>
 
-              <div class="skills-progress-bg">
-                  <div class="skills-progress-fill" style="width: 50%;"></div>
-              </div>
-          </li>
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Crafted a Node.js micro-service for stress testing, generating
+            hundreds of thousands of accounts and virtual devices with MongoDB
+            and MySQL for database operations,specifically designed to pin-point
+            server breakpoints.
+          </p>
+        </li>
+
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Utilized tools: React, Redux, Express.js, MongoDB, NodeJS,
+            Socket.IO, AWS s3 bucket.
+          </p>
+        </li>
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Assumed ownership of optimizing device automation data loadtime for
+            the client by implementing paginationlogic, effectively addressing
+            prolonged data display delays.
+          </p>
+        </li>
       </ul>
-  </section> -->
+    </section>
+
+    <section class="timeline">
+      <div class="title-wrapper">
+        <h3>Chit-Chat - web.app | GitHub</h3>
+        <h4>A multi-user, cross-platform messaging app</h4>
+      </div>
+
+      <ul class="timeline-list">
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Implemented features like real-time message transfer, group
+            creation, and customizable profile details
+          </p>
+        </li>
+
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Built scalable UI components such as custom stack and tab drawer
+            navigators, hamburger menu,and modals
+          </p>
+        </li>
+
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Established user authentication using Firebase
+          </p>
+        </li>
+
+        <li class="timeline-item">
+          <p class="timeline-text">
+            Tools used: ReactNative, Expo, expo-image-picker, Firebase Database
+          </p>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <header>
+    <h2 class="h2 article-title">Education</h2>
+  </header>
+  <section class="timeline">
+    <ul class="timeline-list">
+      <li class="timeline-item">
+        <div class="education-box">
+          <div class="education-title">
+            <h2 class="h4 timeline-item-title">
+              Bachelor of Technology in Computer Science and Engineering
+            </h2>
+            <h4>2018 - 2022</h4>
+          </div>
+
+          <div class="education-title">
+            <h3 class="h4 timeline-item-title">
+              University of Engineering & Management, Kolkata
+            </h3>
+            <h4>CGPA 8.70/10.0</h4>
+          </div>
+        </div>
+
+        <p class="timeline-text">
+          Learnt a wide range of topics that are essential to understanding both
+          the theory and practical aspects of computing. This involves
+          programming fundamentals, computer architecture, operating systems,
+          databases, software engineering, problem solving, collaboration and
+          communication soft skills.
+        </p>
+      </li>
+    </ul>
+  </section>
 </div>

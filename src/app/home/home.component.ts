@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  AfterViewInit,
-  HostListener,
-  OnDestroy,
-} from '@angular/core';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Typed from 'typed.js';

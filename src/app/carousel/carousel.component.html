@@ -1,0 +1,24 @@
+<div
+  class="carousel"
+  [ngStyle]="getCarouselStyle()"
+  [attr.reverse]="reverse ? 'true' : null"
+>
+  <div class="carousel__list">
+    <ng-container *ngFor="let icon of icons; let i = index">
+      <!-- For Font Icons -->
+      <i
+        *ngIf="typeof icon === 'string'"
+        class="carousel__item fa-brands {{ icon }}"
+        [style.--position]="i + 1"
+      ></i>
+
+      <!-- For Images -->
+      <img
+        *ngIf="typeof icon === 'object' && icon.src"
+        class="carousel__item svg-icon"
+        [style.--position]="i + 1"
+        [src]="icon.src"
+      />
+    </ng-container>
+  </div>
+</div>
