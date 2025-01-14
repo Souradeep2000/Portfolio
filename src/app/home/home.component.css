@@ -13,8 +13,8 @@
 
 .content {
   display: flex;
-  align-items: flex-start;
-  /* justify-content: flex-start; */
+  align-items: center;
+  justify-content: space-between;
   gap: 20px;
   opacity: 0;
   transform: translateX(120%);
@@ -44,11 +44,15 @@
 }
 
 .content .image {
-  width: 100px;
+  width: 100%;
+  max-width: 100px;
   height: 100px;
   background-color: #ddd;
   border-radius: 50%;
+  aspect-ratio: 16/9;
   margin: 0 20px;
+  background-size: cover;
+  background-position: center;
 }
 
 .content p {
@@ -78,6 +82,7 @@
     text-align: center;
     align-items: center;
     /* padding: 15px; */
+    max-width: 95%;
   }
 
   .content .image {
@@ -87,14 +92,16 @@
   .content p {
     font-size: 0.85em;
     line-height: 1.2;
-    max-width: 90%;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1100px) {
+  .content {
+    max-width: 80%;
+  }
   .content p {
     font-size: 0.95em;
     line-height: 1.2;
-    max-width: 90%;
+    /* max-width: 90%; */
   }
 }

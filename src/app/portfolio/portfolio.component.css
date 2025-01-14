@@ -1,23 +1,23 @@
-.portfolio-div {
-  margin: 0 auto 0 auto;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 80%;
-}
-
-@media (max-width: 1024px) {
   .portfolio-div {
-    flex-direction: column;
-    width: 90%;
+    margin: 0 auto 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    max-width: 80%;
   }
-}
 
-@media (max-width: 468px) {
-  .portfolio-div {
-    align-items: normal;
+  @media (max-width: 1024px) {
+    .portfolio-div {
+      flex-direction: column;
+      width: 90%;
+      align-items: center;
+      gap: 2rem;
+    }
   }
-}
+
+  @media (max-width: 468px) {
+    .portfolio-div {
+      align-items: normal;
+    }
+  }
