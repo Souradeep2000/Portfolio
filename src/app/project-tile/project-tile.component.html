@@ -1,0 +1,33 @@
+<div class="tile">
+  <div class="card luxury-card">
+    <div class="card-inner">
+      <div class="card-front">
+        <img [src]="project.src" />
+      </div>
+      <div class="card-back">
+        <div class="text">
+          <h1>{{ project.text[0] }}</h1>
+          <h2 class="animate-text">{{ project.text[1] }}</h2>
+          <ul>
+            <li
+              *ngFor="
+                let bullet of getTextArray(project.text[2]);
+                let i = index
+              "
+            >
+              <p class="animate-text">
+                {{ bullet }}
+              </p>
+            </li>
+          </ul>
+
+          <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

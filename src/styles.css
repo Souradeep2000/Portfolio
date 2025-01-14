@@ -4,6 +4,30 @@
   padding: 0;
   scroll-behavior: smooth;
 }
+
+/* Target the scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust the width for subtlety */
+  height: 8px; /* For horizontal scrollbar */
+}
+
+/* Track of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for the track */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1; /* Subtle color for the handle */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Handle hover state */
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0; /* Slightly darker on hover */
+}
+
 html,
 body {
   height: 100%;
