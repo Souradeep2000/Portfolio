@@ -16,3 +16,23 @@
 ::ng-deep .mat-dialog-container::-webkit-scrollbar-thumb:hover {
   background: #a0a0a0;
 } */
+
+.project-frame {
+  width: 100%; /* Occupy the full width of its parent */
+  height: 500px;
+  max-width: 100%; /* Prevent expanding beyond parent */
+  border: none; /* Avoid unnecessary space */
+  display: block; /* Avoid extra inline spacing */
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .project-frame {
+    height: 300px;
+  }
+}

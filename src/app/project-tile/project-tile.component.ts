@@ -1,14 +1,8 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-import {
-  MatDialog,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 interface MyProject {
   src: string;
   text: (string | string[])[];
@@ -29,15 +23,17 @@ export class ProjectTileComponent {
     url: '',
   };
 
-  constructor(
-    public dialog: MatDialog,
-  ) {}
+  constructor(public dialog: MatDialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '80%',
-      data: { url: this.project.url },
-    });
+    const isMobile = window.innerWidth < 768; // Adjust threshold as needed
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.width = isMobile ? '90vw' : '80vw';
+    dialogConfig.maxWidth = '100vw';
+    dialogConfig.data = { url: this.project.url };
+
+    const dialogRef = this.dialog.open(DialogBoxComponent, dialogConfig);
 
     // dialogRef.afterClosed().subscribe(() => {
     //   // Reset cached content after closing the dialog
