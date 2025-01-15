@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 interface MyProject {
   src: string;
   text: (string | string[])[];
+  url: string;
 }
 
 @Component({
@@ -30,6 +31,7 @@ export class PortfolioComponent {
           'Product spotlight',
         ],
       ],
+      url: 'https://art-aficionado.netlify.app/',
     },
 
     {
@@ -44,6 +46,7 @@ export class PortfolioComponent {
           'Real-time send/recieve messages',
         ],
       ],
+      url: 'https://chit-chat-9062.web.app/',
     },
   ];
 }

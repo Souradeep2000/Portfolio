@@ -14,13 +14,18 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 ## 3rd party libraries used
 
+```bash
+Angular Material -- Dialog
+```
 
 ```bash
-particle.js --  To fill background stars
+particle.js -- To fill background stars
 ```
+
 ```bash
-gsap --  For falling cat animation
+gsap -- For falling cat animation
 ```
+
 ```bash
 typed.js` -- For text animations
 ```

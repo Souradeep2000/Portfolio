@@ -18,7 +18,14 @@ import { filter } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'portfolio';
-  constructor(private router: Router) {}
+  externalUrls = [
+    'https://art-aficionado.netlify.app/',
+    'https://chit-chat-9062.web.app/',
+  ];
+
+  constructor(
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     // Set scroll restoration behavior to 'manual' for custom handling
@@ -30,5 +37,15 @@ export class AppComponent implements OnInit {
       .subscribe(() => {
         window.scrollTo(0, 0); // Scroll to the top of the page
       });
+
+    this.externalUrls.forEach((url) => {
+      fetch(url, { method: 'GET', mode: 'no-cors' }) // Cache reload ensures fresh data is fetched
+        .then((response) => {
+          console.log(`Preloaded: ${url}`);
+        })
+        .catch((error) => {
+          console.error(`Error preloading: ${url}`, error);
+        });
+    });
   }
 }
