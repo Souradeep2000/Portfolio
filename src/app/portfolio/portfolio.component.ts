@@ -22,7 +22,7 @@ export class PortfolioComponent {
         'Art Aficionado',
         'An E-Commerce website to provide handicrafts and hand made gifts for special occasions',
         [
-          'Admin Portal',
+          'Admin Portal (add/delete/update products)',
           'User can add review',
           'Add/remove product to cart',
           'Place online order (upi/cards transactions)',
