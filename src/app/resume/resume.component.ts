@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-resume',
-  imports: [CarouselComponent],
+  imports: [CarouselComponent, CommonModule],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.css',
 })
@@ -26,6 +27,4 @@ export class ResumeComponent {
     'fa-github',
     { src: '../../assets/svgs/mysql.svg' },
   ];
-
-  constructor() {}
 }
