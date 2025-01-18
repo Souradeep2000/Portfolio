@@ -1,0 +1,107 @@
+.animate-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.animate-container .about {
+  display: flex;
+  justify-content: center;
+  height: 30vh;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  opacity: 0;
+  transform: translateX(120%);
+  min-height: 50vh;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 70%;
+}
+
+#typed-text {
+  font-size: 54px;
+}
+
+.animate-container .content.left {
+  transform: translateX(-120%);
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+.animate-container .content.right {
+  transform: translateX(120%);
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.content .image {
+  width: 100%;
+  max-width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  border-radius: 50%;
+  aspect-ratio: 16/9;
+  margin: 0 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+.content p {
+  /* flex: 1; */
+  font-size: 1.4em;
+  line-height: 1.4;
+  word-wrap: break-word;
+  text-align: justify;
+  max-width: 700px;
+}
+
+.falling-cat {
+  position: fixed; /* Keep it in a fixed position */
+  top: 20px; /* Start at the top of the viewport */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%);
+  width: 150px; /* Adjust the size of the cat image */
+  height: 150px;
+  background-position: center;
+  background-image: url("/assets/images/cat.png");
+  background-size: cover;
+  z-index: -1; /* Ensure it stays above other elements */
+}
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column !important;
+    text-align: center;
+    align-items: center;
+    /* padding: 15px; */
+    max-width: 95%;
+  }
+
+  .content .image {
+    margin-bottom: 15px;
+  }
+
+  .content p {
+    font-size: 0.85em;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1100px) {
+  .content {
+    max-width: 80%;
+  }
+  .content p {
+    font-size: 0.95em;
+    line-height: 1.2;
+    /* max-width: 90%; */
+  }
+}

@@ -1,0 +1,16 @@
+<div class="animate-container">
+  <div class="falling-cat">
+    <!-- <img src="/assets/images/cat.png" alt="Cat" /> -->
+  </div>
+  <div class="about"><h1 id="typed-text"></h1></div>
+  <div
+    class="content"
+    *ngFor="let item of items; let i = index"
+    [class]="i % 2 === 0 ? 'right' : 'left'"
+  >
+    <div class="image"></div>
+    <div class="text-container">
+      <p>{{ item.text }}</p>
+    </div>
+  </div>
+</div>
