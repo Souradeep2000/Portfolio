@@ -3,6 +3,18 @@ import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Typed from 'typed.js';
+import Swiper from 'swiper';
+import { SwiperOptions } from 'swiper/types';
+import {
+  Navigation,
+  Pagination,
+  Keyboard,
+  Mousewheel,
+  EffectCoverflow,
+} from 'swiper/modules';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +43,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.initCatAnimation();
     this.animateSplitText();
     this.animateLeftRight();
+    this.createSwipper();
   }
 
   ngOnDestroy(): void {
@@ -125,5 +138,49 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         },
       },
     });
+  }
+
+  private createSwipper(): void {
+    const swiperParams: SwiperOptions = {
+      modules: [Navigation, Pagination, Keyboard, Mousewheel, EffectCoverflow],
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slideToClickedSlide: true,
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 3,
+        slideShadows: true,
+      },
+      keyboard: {
+        enabled: true,
+      },
+      mousewheel: {
+        thresholdDelta: 70,
+      },
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 1,
+        },
+        1024: {
+          slidesPerView: 2,
+        },
+        1560: {
+          slidesPerView: 3,
+        },
+      },
+    };
+
+    const swiper = new Swiper('.swiper', swiperParams);
   }
 }
