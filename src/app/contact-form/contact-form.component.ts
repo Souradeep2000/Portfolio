@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../environments/environment';
+import { EmailJSResponseStatus, send } from '@emailjs/browser';
 
 @Component({
   selector: 'app-contact-form',
@@ -57,6 +58,8 @@ export class ContactFormComponent {
     },
   ];
 
+  isLoading: boolean = false;
+
   errorMessages = {
     required: 'This field is required',
     minLength: 'Minimum length not met',
@@ -107,7 +110,7 @@ export class ContactFormComponent {
 
     this.inputFields.forEach((field) => {
       const errorMessage = this.validateField(field);
-      field.errorMessage = errorMessage; // Dynamically update error message
+      field.errorMessage = errorMessage;
       if (errorMessage) {
         isValid = false;
       }
@@ -118,24 +121,34 @@ export class ContactFormComponent {
       return;
     }
 
-    const name = this.inputFields.find((field) => field.name === 'name')?.value;
-    const email = this.inputFields.find(
-      (field) => field.name === 'email'
-    )?.value;
-    const message = this.inputFields.find(
-      (field) => field.name === 'message'
-    )?.value;
+    this.isLoading = true;
 
-    const mailtoLink = `mailto:gharami.souradeep@gmail.com?subject=Collaboration/Feedback Inquiry from ${encodeURIComponent(
-      name ?? 'Anonymous'
-    )}&body=${encodeURIComponent(
-      `From: ${name}\nEmail: ${email}\n\n${message}`
-    )}`;
+    const templateParams = {
+      from_name: this.inputFields.find((field) => field.name === 'name')?.value,
+      thier_email: this.inputFields.find((field) => field.name === 'email')
+        ?.value,
+      thier_phone: this.inputFields.find((field) => field.name === 'phone')
+        ?.value,
+      message: this.inputFields.find((field) => field.name === 'message')
+        ?.value,
+      to_name: 'Souradeep',
+    };
 
-    window.location.href = mailtoLink;
-
-    console.log('Form submitted successfully:', { email, message });
-
-    alert('Form successfully submitted!');
+    send(
+      environment.emailServiceId,
+      environment.emailTemplateId,
+      templateParams,
+      environment.emailPublicKey
+    )
+      .then((response: EmailJSResponseStatus) => {
+        console.log('Email successfully sent!', response);
+        alert('Your message has been sent!');
+        this.isLoading = false;
+      })
+      .catch((error) => {
+        console.error('Failed to send email.', error);
+        alert('Something went wrong, please try again later.');
+        this.isLoading = false;
+      });
   }
 }

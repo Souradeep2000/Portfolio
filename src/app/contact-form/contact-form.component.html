@@ -89,10 +89,10 @@
 
         <input
           type="submit"
-          value="Send"
+          [value]="isLoading ? 'sending...' : 'Send'"
           class="btn"
-          (click)="onSubmit()"
-          [disabled]="!contactForm.form.valid"
+          [ngClass]="{ sending: isLoading }"
+          [disabled]="isLoading || !contactForm.form.valid"
         />
       </form>
     </div>
