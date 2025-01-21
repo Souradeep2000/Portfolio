@@ -56,11 +56,15 @@
               rows="3"
               (focus)="onFocus($event)"
               (blur)="onBlur($event)"
-              [(ngModel)]="field.value"
+              [ngModel]="field.value"
+              (ngModelChange)="field.value = $event"
               required
             ></textarea>
             <label [for]="field.name">{{ field.label }}</label>
             <span>{{ field.label }}</span>
+            <small class="error" *ngIf="field.errorMessage">{{
+              field.errorMessage
+            }}</small>
           </ng-container>
 
           <ng-template #regularInput>
@@ -71,11 +75,15 @@
               class="input"
               (focus)="onFocus($event)"
               (blur)="onBlur($event)"
-              [(ngModel)]="field.value"
+              [ngModel]="field.value"
+              (ngModelChange)="field.value = $event"
               required
             />
             <label [for]="field.name">{{ field.label }}</label>
             <span>{{ field.label }}</span>
+            <small class="error" *ngIf="field.errorMessage">{{
+              field.errorMessage
+            }}</small>
           </ng-template>
         </div>
 
@@ -83,6 +91,7 @@
           type="submit"
           value="Send"
           class="btn"
+          (click)="onSubmit()"
           [disabled]="!contactForm.form.valid"
         />
       </form>

@@ -24,7 +24,9 @@ textarea {
   align-items: center;
   justify-content: center;
 }
-
+.error {
+  color: #ff0000;
+}
 .form {
   width: 100%;
   max-width: 70vw;
