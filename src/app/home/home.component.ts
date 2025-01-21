@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Typed from 'typed.js';
@@ -15,35 +15,74 @@ import {
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements AfterViewInit, OnDestroy {
-  items: { text: string }[] = [
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+  items: {
+    text: string;
+    path_text?: string;
+    link?: string;
+    outerLink?: string;
+  }[] = [
     {
-      text: 'This is the first item with an image and paragraph. ahdua jabude ajhdua kajidjie ajhxuah',
+      text: 'A results-driven software engineer with a passion for building high-quality applications. Known for quickly learning and implementing new technologies. My excellent problem-solving skills and strong collaborative mindset enable me to excel in dynamic, team-oriented environments',
     },
     {
-      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make',
+      text: 'I have successfully developed and delivered applications that meet the highest standards of quality and performance. I specialize in crafting optimized solutions by leveraging my expertise in software engineering principles and maintaining a focus on delivering value to users.',
+      path_text: 'Check out my resume',
+      link: '/souro/resume',
     },
     {
-      text: 'Here’s another item from the left. ypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+      text: 'I’ve solved 700+ LeetCode problems and challenges on other platforms, honing my algorithmic understanding and problem-solving skills for efficient, creative coding. Check out my LeetCode profile for details',
+      path_text: '↗',
+      outerLink: 'https://leetcode.com/u/Souro/',
     },
-    { text: 'And the final item slides in from the right!' },
+    {
+      text: 'Proficient in both front-end and back-end technologies, including JavaScript, TypeScript, Git, Node.js,  Angular/React,  SQL/MongoDB, and more, which I consistently reflect in my personal projects',
+    },
   ];
 
   private typed: any;
 
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.resetAnimations();
+      });
+  }
+
   ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger);
-    this.initCatAnimation();
+    this.initAnimations();
     this.animateSplitText();
-    this.animateLeftRight();
     this.createSwipper();
+  }
+
+  private initAnimations(): void {
+    setTimeout(() => {
+      this.initCatAnimation();
+
+      this.animateLeftRight();
+    }, 0);
+  }
+
+  private resetAnimations(): void {
+    gsap.globalTimeline.clear();
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    setTimeout(() => {
+      this.initAnimations();
+    }, 0);
   }
 
   ngOnDestroy(): void {
@@ -52,24 +91,21 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       this.typed.destroy();
     }
 
-    // Kill all ScrollTrigger instances
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    // Kill all GSAP animations
     gsap.globalTimeline.clear();
   }
 
   animateSplitText(): void {
     const options = {
-      strings: ['My name is Souradeep Gharami'],
+      strings: ['Hi', 'My name is Souradeep Gharami'],
       typeSpeed: 80, // Speed at which the text is typed
       backSpeed: 100, // Speed at which the text is erased
-      backDelay: 3500, // Delay before the text starts deleting
-      startDelay: 500, // Delay before starting to type
+      backDelay: 500, // Delay before the text starts deleting
+      startDelay: 1500, // Delay before starting to type
       loop: true, // Loop the typing effect
       showCursor: true, // Show blinking cursor
-      shuffle: true,
-      cursorChar: ' |', // Custom cursor character
+      shuffle: false,
     };
 
     this.typed = new Typed('#typed-text', options);
@@ -79,7 +115,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     gsap.utils.toArray('.content').forEach((element: any, index: number) => {
       gsap.fromTo(
         element,
-        { opacity: 0, x: index % 2 === 0 ? -150 : 150 }, // Alternates direction
+        { opacity: 0, x: index % 2 === 0 ? -350 : 350 }, // Alternates direction
         {
           opacity: 1,
           x: 0,
@@ -98,6 +134,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
 
   private initCatAnimation(): void {
+    const catElement = document.querySelector('.falling-cat');
+    if (!catElement) {
+      return;
+    }
     gsap.to('.falling-cat', {
       y: window.innerHeight / 2,
       x: 300,
@@ -156,9 +196,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       },
       keyboard: {
         enabled: true,
-      },
-      mousewheel: {
-        thresholdDelta: 70,
+        onlyInViewport: true,
       },
       loop: true,
       pagination: {
@@ -173,7 +211,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
           slidesPerView: 1,
         },
         1024: {
-          slidesPerView: 2,
+          slidesPerView: 1.5,
         },
         1560: {
           slidesPerView: 3,
