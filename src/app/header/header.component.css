@@ -1,10 +1,28 @@
 .navbar.scrolled {
   background-color: #0d1117;
-  padding: 20px 20px;
+  padding: 16px 30px;
 }
 
 .navbar {
-  padding: 30px 20px;
+  padding: 16px 20px;
+}
+
+.navbar-brand {
+  text-transform: capitalize;
+  letter-spacing: 1.5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  background-color: #005baa;
+  text-decoration: underline;
+
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 }
 
 .nav-container {
@@ -41,6 +59,9 @@
 }
 
 @media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 18px;
+  }
   .navbar-links {
     flex-direction: column;
     gap: 10px;
@@ -49,9 +70,9 @@
     font-size: 14px;
   }
   .navbar.scrolled {
-    padding: 15px;
+    padding: 5px;
   }
   .navbar {
-    padding: 20px 10px;
+    padding: 5px 10px;
   }
 }

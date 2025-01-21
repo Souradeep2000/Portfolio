@@ -98,14 +98,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   animateSplitText(): void {
     const options = {
-      strings: ['My name is Souradeep Gharami'],
+      strings: ['Hi', 'My name is Souradeep Gharami'],
       typeSpeed: 80, // Speed at which the text is typed
       backSpeed: 100, // Speed at which the text is erased
-      backDelay: 3500, // Delay before the text starts deleting
-      startDelay: 500, // Delay before starting to type
+      backDelay: 500, // Delay before the text starts deleting
+      startDelay: 1500, // Delay before starting to type
       loop: true, // Loop the typing effect
       showCursor: true, // Show blinking cursor
-      shuffle: true,
+      shuffle: false,
     };
 
     this.typed = new Typed('#typed-text', options);
@@ -196,9 +196,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       keyboard: {
         enabled: true,
-      },
-      mousewheel: {
-        thresholdDelta: 70,
+        onlyInViewport: true,
       },
       loop: true,
       pagination: {
@@ -213,7 +211,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           slidesPerView: 1,
         },
         1024: {
-          slidesPerView: 2,
+          slidesPerView: 1.5,
         },
         1560: {
           slidesPerView: 3,

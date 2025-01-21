@@ -13,7 +13,7 @@
 
 /* Track of the scrollbar */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Light background for the track */
+  background: #0d1117; /* Light background for the track */
   border-radius: 4px; /* Rounded corners */
 }
 
