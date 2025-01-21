@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Typed from 'typed.js';
@@ -15,7 +15,8 @@ import {
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements AfterViewInit, OnDestroy {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   items: {
     text: string;
     path_text?: string;
@@ -35,7 +36,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     },
     {
       text: 'I have successfully developed and delivered applications that meet the highest standards of quality and performance. I specialize in crafting optimized solutions by leveraging my expertise in software engineering principles and maintaining a focus on delivering value to users.',
-      path_text: 'Check my resume',
+      path_text: 'Check out my resume',
       link: '/souro/resume',
     },
     {
@@ -44,18 +45,44 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       outerLink: 'https://leetcode.com/u/Souro/',
     },
     {
-      text: 'Proficient in both front-end and back-end technologies, including JavaScript, TypeScript, Git, Node.js, Angular/React, SQL/MongoDB, and more, which I consistently reflect in my personal projects',
+      text: 'Proficient in both front-end and back-end technologies, including JavaScript, TypeScript, Git, Node.js,  Angular/React,  SQL/MongoDB, and more, which I consistently reflect in my personal projects',
     },
   ];
 
   private typed: any;
 
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.resetAnimations();
+      });
+  }
+
   ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger);
-    this.initCatAnimation();
+    this.initAnimations();
     this.animateSplitText();
-    this.animateLeftRight();
     this.createSwipper();
+  }
+
+  private initAnimations(): void {
+    setTimeout(() => {
+      this.initCatAnimation();
+
+      this.animateLeftRight();
+    }, 0);
+  }
+
+  private resetAnimations(): void {
+    gsap.globalTimeline.clear();
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    setTimeout(() => {
+      this.initAnimations();
+    }, 0);
   }
 
   ngOnDestroy(): void {
@@ -107,6 +134,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
 
   private initCatAnimation(): void {
+    const catElement = document.querySelector('.falling-cat');
+    if (!catElement) {
+      return;
+    }
     gsap.to('.falling-cat', {
       y: window.innerHeight / 2,
       x: 300,
