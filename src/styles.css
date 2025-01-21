@@ -30,7 +30,8 @@
 
 html,
 body {
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -81,8 +82,9 @@ html {
 
 .main-container {
   padding: 150px 40px 40px 40px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+  overflow: visible;
 }
 
 @media screen and (max-width: 768px) {

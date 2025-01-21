@@ -1,7 +1,5 @@
 <div class="animate-container">
-  <div class="falling-cat">
-    <!-- <img src="/assets/images/cat.png" alt="Cat" /> -->
-  </div>
+  <div class="falling-cat"></div>
   <div class="about"><h1 id="typed-text"></h1></div>
   <div
     class="content"
@@ -10,7 +8,20 @@
   >
     <div class="image"></div>
     <div class="text-container">
-      <p>{{ item.text }}</p>
+      <p>
+        {{ item.text }}&nbsp;
+        <ng-container *ngIf="item.link">
+          <a [routerLink]="[item.link]">{{ item.path_text }}</a>
+        </ng-container>
+        <ng-container *ngIf="item.outerLink">
+          <a
+            [href]="item.outerLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            >{{ item.path_text }}</a
+          >
+        </ng-container>
+      </p>
     </div>
   </div>
   <main>

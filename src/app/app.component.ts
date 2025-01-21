@@ -23,9 +23,7 @@ export class AppComponent implements OnInit {
     'https://chit-chat-9062.web.app/',
   ];
 
-  constructor(
-    private router: Router,
-  ) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     // Set scroll restoration behavior to 'manual' for custom handling
@@ -35,7 +33,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        window.scrollTo(0, 0); // Scroll to the top of the page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
     this.externalUrls.forEach((url) => {

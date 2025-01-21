@@ -15,25 +15,37 @@ import {
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
-  items: { text: string }[] = [
+  items: {
+    text: string;
+    path_text?: string;
+    link?: string;
+    outerLink?: string;
+  }[] = [
     {
-      text: 'This is the first item with an image and paragraph. ahdua jabude ajhdua kajidjie ajhxuah',
+      text: 'A results-driven software engineer with a passion for building high-quality applications. Known for quickly learning and implementing new technologies. My excellent problem-solving skills and strong collaborative mindset enable me to excel in dynamic, team-oriented environments',
     },
     {
-      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make',
+      text: 'I have successfully developed and delivered applications that meet the highest standards of quality and performance. I specialize in crafting optimized solutions by leveraging my expertise in software engineering principles and maintaining a focus on delivering value to users.',
+      path_text: 'Check my resume',
+      link: '/souro/resume',
     },
     {
-      text: 'Here’s another item from the left. ypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+      text: 'I’ve solved 700+ LeetCode problems and challenges on other platforms, honing my algorithmic understanding and problem-solving skills for efficient, creative coding. Check out my LeetCode profile for details',
+      path_text: '↗',
+      outerLink: 'https://leetcode.com/u/Souro/',
     },
-    { text: 'And the final item slides in from the right!' },
+    {
+      text: 'Proficient in both front-end and back-end technologies, including JavaScript, TypeScript, Git, Node.js, Angular/React, SQL/MongoDB, and more, which I consistently reflect in my personal projects',
+    },
   ];
 
   private typed: any;
@@ -52,10 +64,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       this.typed.destroy();
     }
 
-    // Kill all ScrollTrigger instances
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    // Kill all GSAP animations
     gsap.globalTimeline.clear();
   }
 
@@ -69,7 +79,6 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       loop: true, // Loop the typing effect
       showCursor: true, // Show blinking cursor
       shuffle: true,
-      cursorChar: ' |', // Custom cursor character
     };
 
     this.typed = new Typed('#typed-text', options);
@@ -79,7 +88,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     gsap.utils.toArray('.content').forEach((element: any, index: number) => {
       gsap.fromTo(
         element,
-        { opacity: 0, x: index % 2 === 0 ? -150 : 150 }, // Alternates direction
+        { opacity: 0, x: index % 2 === 0 ? -350 : 350 }, // Alternates direction
         {
           opacity: 1,
           x: 0,
