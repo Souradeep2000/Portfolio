@@ -183,10 +183,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private createSwipper(): void {
     const swiperParams: SwiperOptions = {
       modules: [Navigation, Pagination, Keyboard, Mousewheel, EffectCoverflow],
+      initialSlide: 2,
       effect: 'coverflow',
       grabCursor: true,
       centeredSlides: true,
       slideToClickedSlide: true,
+      allowTouchMove: true,
+      mousewheel: false,
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
@@ -198,23 +201,35 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         enabled: true,
         onlyInViewport: true,
       },
-      loop: true,
+      loop: false,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
       },
       breakpoints: {
+        410: {
+          slidesPerView: 1.2,
+        },
+        440: {
+          slidesPerView: 1.3,
+        },
+        540: {
+          slidesPerView: 1.5,
+        },
         640: {
-          slidesPerView: 2,
+          slidesPerView: 1.5,
         },
         768: {
           slidesPerView: 1,
         },
         1024: {
+          slidesPerView: 1.3,
+        },
+        1280: {
           slidesPerView: 1.5,
         },
         1560: {
-          slidesPerView: 3,
+          slidesPerView: 2,
         },
       },
     };
