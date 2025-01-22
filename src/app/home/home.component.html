@@ -6,7 +6,9 @@
     *ngFor="let item of items; let i = index"
     [class]="i % 2 === 0 ? 'right' : 'left'"
   >
-    <div class="image"></div>
+    <div class="image">
+      <img [src]="item.src" alt="" />
+    </div>
     <div class="text-container">
       <p>
         {{ item.text }}&nbsp;
