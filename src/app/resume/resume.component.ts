@@ -27,4 +27,12 @@ export class ResumeComponent {
     'fa-github',
     { src: '../../assets/svgs/mysql.svg' },
   ];
+
+  downloadFile(): void {
+    const filePath = 'assets/docs/Souradeep_Gharami_Resume.pdf';
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = 'Souradeep_Gharami_Resume.pdf';
+    link.click();
+  }
 }
