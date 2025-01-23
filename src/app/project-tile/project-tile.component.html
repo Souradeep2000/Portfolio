@@ -6,7 +6,12 @@
       </div>
       <div class="card-back">
         <div class="text">
-          <h1>{{ project.text[0] }}</h1>
+          <h1>
+            {{ project.text[0] }}
+            <a class="project-arrow" [href]="project.url" target="_blank" rel="noopener noreferrer"
+              >&#x2197;</a>
+          </h1>
+
           <h2 class="animate-text">{{ project.text[1] }}</h2>
           <ul>
             <li

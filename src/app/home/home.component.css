@@ -27,6 +27,16 @@
   max-width: 75%;
 }
 
+.animate-container .content .text-container a {
+  text-decoration: none;
+  font-weight: 900;
+} 
+
+.animate-container .content .text-container a:hover {
+  text-decoration: double !important;
+  color: blueviolet;
+}
+
 #typed-text {
   font-size: 64px;
   text-transform: capitalize;
