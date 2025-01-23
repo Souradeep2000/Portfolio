@@ -34,11 +34,6 @@ export class ProjectTileComponent {
     dialogConfig.data = { url: this.project.url };
 
     const dialogRef = this.dialog.open(DialogBoxComponent, dialogConfig);
-
-    // dialogRef.afterClosed().subscribe(() => {
-    //   // Reset cached content after closing the dialog
-    //   this.websiteCacheService.resetContent();
-    // });
   }
 
   getTextArray(text: (string | string[]) | undefined): string[] {

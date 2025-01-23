@@ -30,22 +30,27 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     path_text?: string;
     link?: string;
     outerLink?: string;
+    src?: string;
   }[] = [
     {
       text: 'A results-driven software engineer with a passion for building high-quality applications. Known for quickly learning and implementing new technologies. My excellent problem-solving skills and strong collaborative mindset enable me to excel in dynamic, team-oriented environments',
+      src: '../../assets/svgs/hat.gif',
     },
     {
       text: 'I have successfully developed and delivered applications that meet the highest standards of quality and performance. I specialize in crafting optimized solutions by leveraging my expertise in software engineering principles and maintaining a focus on delivering value to users.',
       path_text: 'Check out my resume',
       link: '/souro/resume',
+      src: '../../assets/svgs/coding.gif',
     },
     {
       text: 'I’ve solved 700+ LeetCode problems and challenges on other platforms, honing my algorithmic understanding and problem-solving skills for efficient, creative coding. Check out my LeetCode profile for details',
       path_text: '↗',
       outerLink: 'https://leetcode.com/u/Souro/',
+      src: '../../assets/svgs/idea.gif',
     },
     {
       text: 'Proficient in both front-end and back-end technologies, including JavaScript, TypeScript, Git, Node.js,  Angular/React,  SQL/MongoDB, and more, which I consistently reflect in my personal projects',
+      src: '../../assets/svgs/software.gif',
     },
   ];
 
@@ -183,10 +188,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private createSwipper(): void {
     const swiperParams: SwiperOptions = {
       modules: [Navigation, Pagination, Keyboard, Mousewheel, EffectCoverflow],
+      initialSlide: 2,
       effect: 'coverflow',
       grabCursor: true,
       centeredSlides: true,
       slideToClickedSlide: true,
+      allowTouchMove: true,
+      mousewheel: false,
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
@@ -198,23 +206,38 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         enabled: true,
         onlyInViewport: true,
       },
-      loop: true,
+      loop: false,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
       },
       breakpoints: {
+        410: {
+          slidesPerView: 1.2,
+        },
+        440: {
+          slidesPerView: 1.3,
+        },
+        540: {
+          slidesPerView: 1.5,
+        },
         640: {
-          slidesPerView: 2,
+          slidesPerView: 1.5,
         },
         768: {
           slidesPerView: 1,
         },
         1024: {
+          slidesPerView: 1.3,
+        },
+        1280: {
           slidesPerView: 1.5,
         },
+        1380: {
+          slidesPerView: 2,
+        },
         1560: {
-          slidesPerView: 3,
+          slidesPerView: 2.3,
         },
       },
     };

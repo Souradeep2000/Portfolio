@@ -57,12 +57,20 @@
 .d-footer-li {
   margin-bottom: 5px;
 }
+.d-footer-li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: small;
+}
+.portfolio-footer-section .d-footer-li a {
+  font-size: medium;
+}
 
 .d-footer-li:hover {
   cursor: pointer;
   transform: translateX(10px);
   transition: all 0.4s;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .d-footer-li-h {

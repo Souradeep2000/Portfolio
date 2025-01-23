@@ -172,10 +172,41 @@
   position: absolute;
 }
 
+.resume .btn-div {
+  margin: 6rem 1rem 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resume .btn {
+  padding: 0.6rem 1.3rem;
+  background-color: #fff;
+  border: 2px solid #fafafa;
+  font-size: 0.95rem;
+  color: black;
+  line-height: 1;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0;
+  width: 50%;
+  transition: opacity 0.5s ease;
+}
+
+.resume .btn:hover {
+  background-color: transparent;
+  color: #fff;
+}
+
 @media screen and (max-width: 768px) {
   .resume {
     max-width: 95%;
     margin-top: 5%;
+  }
+  .resume .btn {
+    width: 100%;
   }
 
   .education-box .education-title {

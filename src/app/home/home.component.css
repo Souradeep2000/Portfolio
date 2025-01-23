@@ -27,6 +27,16 @@
   max-width: 75%;
 }
 
+.animate-container .content .text-container a {
+  text-decoration: none;
+  font-weight: 900;
+} 
+
+.animate-container .content .text-container a:hover {
+  text-decoration: double !important;
+  color: blueviolet;
+}
+
 #typed-text {
   font-size: 64px;
   text-transform: capitalize;
@@ -99,9 +109,9 @@
 
 .content .image {
   width: 100%;
-  max-width: 100px;
-  height: 100px;
-  background-color: #ddd;
+  max-width: 150px;
+  height: 150px;
+  /* background-color: #ddd; */
   border-radius: 50%;
   aspect-ratio: 16/9;
   margin: 0 20px;
@@ -109,6 +119,12 @@
   background-position: center;
 }
 
+.content .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .content p {
   /* flex: 1; */
   font-size: 1.1em;
@@ -126,7 +142,7 @@
   top: 20px; /* Start at the top of the viewport */
   left: 50%; /* Center horizontally */
   transform: translateX(-50%);
-  width: 150px; /* Adjust the size of the cat image */
+  width: 150px;
   height: 150px;
   background-position: center;
   background-image: url("/assets/images/cat.png");
@@ -138,7 +154,6 @@
     flex-direction: column !important;
     text-align: center;
     align-items: center;
-    /* padding: 15px; */
     max-width: 95%;
   }
 
@@ -278,7 +293,7 @@ main .swiper-text {
   opacity: 0.6; /* Dim inactive slides */
   transition: opacity 0.3s ease;
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 25px;
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   box-shadow: linear-gradient(to top, #0f2027, #203a4300, #2c536400);
   padding: 20px;
@@ -288,6 +303,7 @@ main .swiper-text {
 .swiper-slide-active {
   opacity: 1;
   transform: scale(1.05);
+  border: 4px solid #005baa;
 }
 
 .swiper-slide .feedback-card {
@@ -338,29 +354,33 @@ main .swiper-text {
   background-image: none;
 }
 
-/* @media (min-width: 1024px) and (max-width: 1280px) {
-  .swiper-slide {
-    width: 18.75rem !important;
-  }
-  main {
-    width: calc(min(90rem, 100%));
-  }
-} */
-
 @media screen and (min-width: 48rem) {
   main {
     display: flex;
     align-items: center;
   }
+}
 
+@media screen and (max-width: 768px) {
   main > div h1,
   h3 {
     font-size: 34px;
   }
 }
 
+@media screen and (max-width: 900px) {
+  .swiper-pagination {
+    bottom: 1rem !important;
+  }
+}
 @media screen and (min-width: 93.75rem) {
   .swiper {
     width: 85%;
   }
 }
+
+/* @media (min-width: 1024px) and (max-width: 1280px) {
+  .swiper-slide {
+    width: 18.75rem !important;
+  }
+} */
