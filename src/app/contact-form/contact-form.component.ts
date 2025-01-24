@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-// import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { EmailJSResponseStatus, send } from '@emailjs/browser';
 
 @Component({
@@ -134,19 +134,12 @@ export class ContactFormComponent {
       to_name: 'Souradeep',
     };
 
-    // send(
-    //   environment.emailServiceId,
-    //   environment.emailTemplateId,
-    //   templateParams,
-    //   environment.emailPublicKey
-    // )  use this locally
-
     send(
-      process.env['EMAIL_SERVICE_ID'] || '',
-      process.env['EMAIL_TEMPLATE_ID'] || '',
+      environment.emailServiceId,
+      environment.emailTemplateId,
       templateParams,
-      process.env['EMAIL_PUBLIC_KEY'] || ''
-    )
+      environment.emailPublicKey
+    )  
       .then((response: EmailJSResponseStatus) => {
         console.log('Email successfully sent!', response);
         alert('Your message has been sent!');
