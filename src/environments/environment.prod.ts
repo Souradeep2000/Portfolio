@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  emailServiceId: process.env['EMAIL_SERVICE_ID'] || '',
-  emailTemplateId: process.env['EMAIL_TEMPLATE_ID'] || '',
-  emailPublicKey: process.env['EMAIL_PUBLIC_KEY'] || '',
+  emailServiceId: 'service_wksnjlh',
+  emailTemplateId: 'template_rsugh7y',
+  emailPublicKey: 'xM6K086fJdNCXmz2r',
 };
